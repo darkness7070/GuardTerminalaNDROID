@@ -1,16 +1,28 @@
 package com.example.guardterminal;
 
-public class Applications {
+import java.io.Serializable;
+
+public class Applications implements Serializable {
+    private int id;
     private String name;
     private String date;
     private String subdivision;
     private String type;
 
-    public Applications(String name, String date, String subdivision, String type) {
+    public Applications(int id,String name, String date, String subdivision, String type) {
+        this.id = id;
         this.name = name;
         this.date = date;
         this.subdivision = subdivision;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

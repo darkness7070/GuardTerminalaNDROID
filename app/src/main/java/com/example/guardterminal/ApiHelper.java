@@ -3,8 +3,10 @@ package com.example.guardterminal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +65,7 @@ public class ApiHelper {
             for (int i =0;i<jsonResponse.length();i++){
                 JSONObject object = jsonResponse.getJSONObject(i);
                 applicationsList.add(new Applications(
+                    object.getInt("id"),
                    object.getString("name"),
                    object.getString("date"),
                    object.getString("subdivision"),
@@ -75,6 +78,27 @@ public class ApiHelper {
             exception.printStackTrace();
         }
         return null;
+    }
+    public boolean AcceptApp(Integer id,String arrival,String leaving){
+        try{
+            HttpURLConnection connection = (HttpURLConnection) new URL(BaseURL+"android/accept?id="+id).openConnection();
+            connection.setRequestProperty("Content-Type","application/json");
+            connection.setRequestMethod("POST");
+            JSONObject object = new JSONObject();
+            object.put("id",id);
+            object.put("arrival",arrival);
+            object.put("leaving",leaving);
+            connection.getOutputStream().write(object.toString().getBytes());
+
+            Integer code = connection.getResponseCode();
+            if(code == HttpURLConnection.HTTP_OK){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+           return false;
+        }
+        return false;
     }
 
 }
