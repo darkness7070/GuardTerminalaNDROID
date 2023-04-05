@@ -143,9 +143,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"   />
         <Button
-            android:id="@+id/btnReject"
+            android:id="@+id/btnCancel"
             android:textSize="16sp"
-            android:text="Отклонить"
+            android:text="Отмена"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"/>

@@ -81,7 +81,7 @@ public class ApiHelper {
     }
     public boolean AcceptApp(Integer id,String arrival,String leaving){
         try{
-            HttpURLConnection connection = (HttpURLConnection) new URL(BaseURL+"android/accept?id="+id).openConnection();
+            HttpURLConnection connection = (HttpURLConnection) new URL(BaseURL+"android/accept").openConnection();
             connection.setRequestProperty("Content-Type","application/json");
             connection.setRequestMethod("POST");
             JSONObject object = new JSONObject();

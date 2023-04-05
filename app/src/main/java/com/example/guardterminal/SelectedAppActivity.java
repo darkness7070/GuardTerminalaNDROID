@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class SelectedAppActivity extends AppCompatActivity {
     private TextView tvName,tvDate,tvType,tvSubdivision,tvArrival, tvLeaving;
-    private Button btnArrival, btnLeaving, btnAccept, btnReject;
+    private Button btnArrival, btnLeaving, btnAccept, btnCancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class SelectedAppActivity extends AppCompatActivity {
         btnArrival = findViewById(R.id.btnArrival);
         btnLeaving = findViewById(R.id.btnLeaving);
         btnAccept = findViewById(R.id.btnAccept);
-        btnReject = findViewById(R.id.btnReject);
+        btnCancel = findViewById(R.id.btnCancel);
 
         tvArrival = findViewById(R.id.tvArrival);
         tvLeaving = findViewById(R.id.tvLeaving);
@@ -51,7 +51,14 @@ public class SelectedAppActivity extends AppCompatActivity {
                 new Accept().execute(app.getId());
             }
         });
-
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectedAppActivity.this, ApplicationsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         TimePickerDialog timePickerDialog = new TimePickerDialog(SelectedAppActivity.this,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
